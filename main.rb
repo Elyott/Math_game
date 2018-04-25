@@ -13,11 +13,6 @@ class Main
     while @player1.lives > 0 && @player2.lives > 0
       play_round
     end
-    if @currentPlayer == @player1
-      puts "Player 1 Wins!"
-    else
-      puts "Player 2 Wins!"
-    end
   end
 
   def next_player
@@ -50,9 +45,21 @@ class Main
       @currentPlayer.lose_life
     end
 
-    puts "----- Next Player -----"
-
-    next_player
+    if @currentPlayer.lives == 0
+      next_player
+      if @currentPlayer == @player1
+        puts "----- Winner -----"
+        puts "Player 1 Wins with a score of #{ @player1.lives }/3"
+        puts "----- Game Over -----"
+      else
+        puts "----- Winner -----"
+        puts "Player 2 Wins with a score of #{ @player2.lives }/3"
+        puts "----- Game Over -----"
+      end
+    else
+      puts "----- Next Player -----"
+      next_player
+    end
 
   end
 
